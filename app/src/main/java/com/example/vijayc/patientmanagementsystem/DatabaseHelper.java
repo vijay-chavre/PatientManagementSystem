@@ -1,44 +1,51 @@
-package com.example.vijayc.patientmanagementsystem;
-
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
 /**
  * Created by vijayc on 22/10/16.
  */
 
-public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION=1;
-    private static final String DATABASE_NAME = "patientmanagementsystem";
-    private static final String TABLE_NAME = "login";
-    private static final String COLUMON_ID ="id";
-    private static final String COLUMON_NAME ="name";
-    private static final String COLUMON_EMAIL="email";
-    private static final String COLUMON_UNAME ="uname";
-    private static final String COLUMON_PASS = "pass";
-    SQLiteDatabase db;
+package com.example.vijayc.patientmanagementsystem;
 
-    private static  final String TABLE_CREATE = "create table login (id integer primary key not null auto_increment , " + "name text not null, email text not null, uname text not null, pass text not null)";
 
-    public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+import android.content.Context;
+
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+public class DatabaseHelper extends SQLiteOpenHelper
+{
+    public DatabaseHelper(Context context, String name,CursorFactory factory, int version)
+    {
+        super(context, name, factory, version);
     }
-
+    // Called when no database exists in disk and the helper class needs
+    // to create a new one.
     @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TABLE_CREATE);
-        this.db=db;
+    public void onCreate(SQLiteDatabase _db)
+    {
+        _db.execSQL(LoginDataBaseAdapter.DATABASE_CREATE);
 
     }
-
+    // Called when there is a database version mismatch meaning that the version
+    // of the database on disk needs to be upgraded to the current version.
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase _db, int _oldVersion, int _newVersion)
+    {
+        // Log the version upgrade.
+        Log.w("TaskDBAdapter", "Upgrading from version " +_oldVersion + " to " +_newVersion + ", which will destroy all old data");
 
-        String query ="DROP TABLE IF EXIST" +TABLE_NAME;
-        db.execSQL(query);
-        this.onCreate(db);
 
+        // Upgrade the existing database to conform to the new version. Multiple
+        // previous versions can be handled by comparing _oldVersion and _newVersion
+        // values.
+        // The simplest case is to drop the old table and create a new one.
+        _db.execSQL("DROP TABLE IF EXISTS " + "TEMPLATE");
+        // Create a new one.
+        onCreate(_db);
     }
+
+
 }
