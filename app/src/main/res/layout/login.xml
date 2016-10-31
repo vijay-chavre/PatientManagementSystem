@@ -2,12 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#1a2e46">
 
     <EditText
         android:id="@+id/editTextUserNameToLogin"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
+        android:ellipsize="start"
+        android:gravity="center"
+        android:background="@drawable/text_input_border"
+        android:textColor="@color/colorloginforground"
+        android:textCursorDrawable="@drawable/editext_cursor_color"
+        android:textColorHint="#FFFF"
         android:hint="User Name"
         android:ems="10" >
 
@@ -16,8 +28,19 @@
 
     <EditText
         android:id="@+id/editTextPasswordToLogin"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="15dp"
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
+        android:ellipsize="start"
+        android:gravity="center"
+        android:background="@drawable/text_input_border"
+        android:foreground="@color/colorloginforground"
+        android:textCursorDrawable="@drawable/editext_cursor_color"
+        android:textColorHint="#FFFF"
         android:ems="10"
         android:inputType="textPassword"
         android:hint="Password" />
@@ -26,7 +49,13 @@
         android:id="@+id/buttonSignIn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Sign In" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="5dp"
+        android:text="Sign In"
+        android:background="@drawable/button_background"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"/>
 
 </LinearLayout>
 
