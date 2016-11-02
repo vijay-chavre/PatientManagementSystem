@@ -21,6 +21,14 @@
             android:name="com.google.android.backup.api_key"
             android:value="AEdPqrEAAAAIt7os_aLH1OUFzoHj3526l0I7cLmta4YtykG41Q" />
 
+        <activity
+            android:name=".PatientList"
+            android:label="@string/title_activity_patient_list"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.vijayc.patientmanagementsystem.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

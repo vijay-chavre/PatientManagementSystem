@@ -1,4 +1,4 @@
-package com.example.vijayc.patientmanagementsystem;
+package com.example.vijayc.patientmanagementsystem.data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -55,7 +55,7 @@ public class LoginDataBaseAdapter
         return db;
     }
 
-    // method to insert a record in Table
+    // method to insert a record in Table LOGIN
     public void insertEntry(String userName,String password)
     {
 
@@ -74,7 +74,7 @@ public class LoginDataBaseAdapter
 
     }
 
-    // method to delete a Record of UserName
+    // method to delete a Record of UserName in LOGIN Table
     public int deleteEntry(String UserName)
     {
 
@@ -85,7 +85,7 @@ public class LoginDataBaseAdapter
 
     }
 
-    // method to get the password  of userName
+    // method to get the password  of userName from LOGIN Table
     public String getSinlgeEntry(String userName)
     {
 
@@ -100,7 +100,7 @@ public class LoginDataBaseAdapter
 
     }
 
-    // Method to Update an Existing Record
+    // Method to Update an Existing Record In LOGIN Table
     public void  updateEntry(String userName,String password)
     {
         //  create object of ContentValues
@@ -114,7 +114,7 @@ public class LoginDataBaseAdapter
 
     }
 
-    //method to Get all Users
+    //method to Get all Users FROM LOGIN Table
     public ArrayList<String> getAllUsers()
     {
         ArrayList<String> array_list = new ArrayList<String>();
@@ -130,6 +130,9 @@ public class LoginDataBaseAdapter
         }
         return array_list;
     }
+
+
+    /* .........................Methods for PATIENT Table.............................................. */
 
 
 }

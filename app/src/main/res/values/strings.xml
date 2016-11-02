@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">myClinic</string>
+    <string name="title_activity_patient_list">PatientList</string>
+    <string name="AddPatient">AddPatient</string>
+
+    <string name="fa_icon_areachart">&#xf1fe;</string>
+    <string name="fa_icon_piechart">&#xf200;</string>
+    <string name="fa_icon_linechart">&#xf201;</string>
 </resources>

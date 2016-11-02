@@ -3,15 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back2"
     android:orientation="vertical"
     android:gravity="center_vertical" >
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/imageView"
+        android:src="@drawable/myclinic"/>
 
+    <Button
+        android:id="@+id/buttonSignINn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text=""
+        android:onClick="signIn"/>
 
     <Button
         android:id="@+id/buttonSignIN"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        style="@style/buttonStyle"
         android:text="Sign IN"
         android:onClick="signIn"/>
 
@@ -19,11 +34,13 @@
         android:id="@+id/buttonSignUP"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        style="@style/buttonStyle"
         android:text="Sign UP" />
     <Button
         android:id="@+id/buttonGetAllUser"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        style="@style/buttonStyle"
         android:text="GetAll Users" />
 
 
