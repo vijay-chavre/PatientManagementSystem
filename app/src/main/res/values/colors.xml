@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#8695a6</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorloginforground">#FFFF</color>
+    <color name="image_border_start">#f5fffefe</color>
+    <color name="image_border_end">#FFFF</color>
+    <color name="image_border_center">#465983</color>
 </resources>

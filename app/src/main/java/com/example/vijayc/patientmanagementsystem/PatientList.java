@@ -37,8 +37,8 @@ public class PatientList extends Activity {
 
                 final Dialog dialog = new Dialog(PatientList.this);
 
-                dialog.setContentView(R.layout.login);
-                dialog.setTitle("Login");
+                dialog.setContentView(R.layout.activity_add_patient_details);
+                dialog.setTitle("AddPatientDetails");
 
                 // get the Refferences of views
                 final EditText editTextUserName = (EditText) dialog.findViewById(R.id.editTextUserNameToLogin);

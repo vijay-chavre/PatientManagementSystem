@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +21,8 @@ public class LoginDataBaseAdapter
 
     public static final int NAME_COLUMN = 1;
     // TODO: Create public field for each column in your table.
-    // SQL Statement to create a new database.
+    // SQL Statement to create a new database Tables.
+    //LOGIN table Create Statement
     static final String DATABASE_CREATE = "create table "+"LOGIN"+
             "( " +"ID"+" integer primary key autoincrement,"+ "USERNAME  text,PASSWORD text); ";
 
@@ -134,5 +136,26 @@ public class LoginDataBaseAdapter
 
     /* .........................Methods for PATIENT Table.............................................. */
 
+    //PATIENT table Create Statement
+    static final String PATIENT_TABLE = "create table "+"PATIENT"+
+            "( " +"P_ID"+" integer primary key autoincrement,"+ "P_FNAME  text,P_MNAME  text,P_LNAME  text,P_VILLAGE text,P_MOBILE  text,P_IMAGEPATH text); ";
 
+//    // method to insert a record in Table LOGIN
+//    public void addPatient(String fName, String mName, String lName, String village, String mobile, Blob image)
+//    {
+//
+//
+//        ContentValues newValues = new ContentValues();
+//        // Assign values for each column.
+//        newValues.put("USERNAME", userName);
+//        newValues.put("PASSWORD",password);
+//
+//
+//
+//        // Insert the row into your table
+//        db.insert("LOGIN", null, newValues);
+//        Toast.makeText(context, "User Info Saved", Toast.LENGTH_LONG).show();
+//
+//
+//    }
 }
