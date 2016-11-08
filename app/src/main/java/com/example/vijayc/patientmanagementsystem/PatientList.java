@@ -40,38 +40,54 @@ public class PatientList extends Activity {
                 dialog.setContentView(R.layout.activity_add_patient_details);
                 dialog.setTitle("AddPatientDetails");
 
-                // get the Refferences of views
-                final EditText editTextUserName = (EditText) dialog.findViewById(R.id.editTextUserNameToLogin);
-                final EditText editTextPassword = (EditText) dialog.findViewById(R.id.editTextPasswordToLogin);
+                image = (ImageView) dialog.findViewById(R.id.image);
+                final EditText fname  = (EditText) dialog.findViewById(R.id.fname);
+                final EditText mname = (EditText) dialog.findViewById(R.id.mname);
+                final EditText lname = (EditText) dialog.findViewById(R.id.lname);
+                final EditText village= (EditText) dialog.findViewById(R.id.village);
+                final EditText mobile= (EditText) dialog.findViewById(R.id.mobile);
 
-                Button btnSignIn = (Button) dialog.findViewById(R.id.buttonSignIn);
+                //Method to get image from image gallary
+
+                image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // in onCreate or any event where your want the user to
+                        // select a file
+                        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                        photoPickerIntent.setType("image/*");
+                        startActivityForResult(photoPickerIntent, SELECT_PHOTO);
+                    }
+                });
+
+
+                final Button addPatient = (Button) dialog.findViewById(R.id.addPatient);
                 // create the instance of Databse
                 loginDataBaseAdapter = new LoginDataBaseAdapter(this);
                 loginDataBaseAdapter = loginDataBaseAdapter.open();
 
                 // Set On ClickListener
-                btnSignIn.setOnClickListener(new View.OnClickListener() {
+                addPatient.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
                         // TODO Auto-generated method stub
 
                         // get The User name and Password
-                        String userName = editTextUserName.getText().toString();
-                        String password = editTextPassword.getText().toString();
+                        String Fname= fname.getText().toString();
+                        String Mname= mname.getText().toString();
+                        String Lname= lname.getText().toString();
+                        String Village= village.getText().toString();
+                        String Mobile= mobile.getText().toString();
+                        loginDataBaseAdapter.addPatient(Fname,Mname,Lname,Village,Mobile,filemanagerstring);
 
-                        // fetch the Password form database for respective user name
-                        String storedPassword = loginDataBaseAdapter.getSinlgeEntry(userName);
+                        //PRINT ALL PATIENTS
+                        array_list = loginDataBaseAdapter.getAllPatients();
 
-                        // check if the Stored password matches with  Password entered by user
-                        if (password.equals(storedPassword)) {
-                            Toast.makeText(PatientList.this, "Login Successfull", Toast.LENGTH_LONG).show();
-                            dialog.dismiss();
-                            Intent intentSignUP = new Intent(getApplicationContext(), PatientList.class);
-                            startActivity(intentSignUP);
-                        } else {
-
-                            Toast.makeText(PatientList.this, "User Name and Does Not Matches", Toast.LENGTH_LONG).show();
+                        Iterator itr=array_list.iterator();//getting Iterator from arraylist to traverse elements
+                        while(itr.hasNext()){
+                            System.out.println(itr.next());
                         }
+
 
                     }
                 });
@@ -82,9 +98,68 @@ public class PatientList extends Activity {
 
                 Toast.makeText(getApplicationContext(),"added record",Toast.LENGTH_LONG).show();
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+
+        switch(requestCode) {
+            case SELECT_PHOTO:
+                if(resultCode == RESULT_OK){
+                    Uri selectedImage = imageReturnedIntent.getData();
+                    //OI FILE Manager
+                    filemanagerstring = selectedImage.getPath();
+                    image.setImageURI(selectedImage);
+                    System.out.println("path"+filemanagerstring);
+//                    InputStream imageStream = null;
+//                    try {
+//                        imageStream = getContentResolver().openInputStream(selectedImage);
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    }
+                    try {
+                        Bitmap yourSelectedImage = decodeUri(selectedImage);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+        }
+    }
+
+    //UPDATED!
+    private Bitmap decodeUri(Uri selectedImage) throws FileNotFoundException {
+
+        // Decode image size
+        BitmapFactory.Options o = new BitmapFactory.Options();
+        o.inJustDecodeBounds = true;
+        BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o);
+
+        // The new size we want to scale to
+        final int REQUIRED_SIZE = 20;
+
+        // Find the correct scale value. It should be the power of 2.
+        int width_tmp = o.outWidth, height_tmp = o.outHeight;
+        int scale = 1;
+        while (true) {
+            if (width_tmp / 2 < REQUIRED_SIZE
+                    || height_tmp / 2 < REQUIRED_SIZE) {
+                break;
+            }
+            width_tmp /= 2;
+            height_tmp /= 2;
+            scale *= 2;
+        }
+
+        // Decode with inSampleSize
+        BitmapFactory.Options o2 = new BitmapFactory.Options();
+        o2.inSampleSize = scale;
+        return BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o2);
+
     }
 
 }

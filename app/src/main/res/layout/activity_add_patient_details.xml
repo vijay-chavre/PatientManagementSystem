@@ -11,27 +11,47 @@
         android:src="@drawable/myclinic"
         android:layout_gravity="center"
         style="@style/myImageView"
-        android:id="@+id/imageView2" />
+        android:id="@+id/image" />
     <EditText
-        android:id="@+id/editTextUserNameToLogin"
+        android:id="@+id/fname"
         style="@style/edittexStyle"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:hint="User Name">
-
-        <requestFocus />
+        android:hint="First_Name">
+    </EditText>
+    <EditText
+        android:id="@+id/mname"
+        style="@style/edittexStyle"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:hint="Middel_Name">
+    </EditText>
+    <EditText
+        android:id="@+id/lname"
+        style="@style/edittexStyle"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:hint="Last_Name ">
+    </EditText>
+    <EditText
+        android:id="@+id/village"
+        style="@style/edittexStyle"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:hint="Village_Name">
+    </EditText>
+    <EditText
+        android:id="@+id/mobile"
+        style="@style/edittexStyle"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:hint="Mobile_Number">
     </EditText>
 
-    <EditText
-        android:id="@+id/editTextPasswordToLogin"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        style="@style/edittexStyle"
-        android:inputType="textPassword"
-        android:hint="Password" />
+
 
     <Button
-        android:id="@+id/buttonSignIn"
+        android:id="@+id/addPatient"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"

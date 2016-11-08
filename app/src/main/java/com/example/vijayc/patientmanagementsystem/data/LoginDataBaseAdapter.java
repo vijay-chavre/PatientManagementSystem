@@ -15,6 +15,7 @@ import java.util.ArrayList;
  */
 public class LoginDataBaseAdapter
 {
+    static int count;
     static final String DATABASE_NAME = "login.db";
 
     static final int DATABASE_VERSION = 1;
@@ -140,22 +141,54 @@ public class LoginDataBaseAdapter
     static final String PATIENT_TABLE = "create table "+"PATIENT"+
             "( " +"P_ID"+" integer primary key autoincrement,"+ "P_FNAME  text,P_MNAME  text,P_LNAME  text,P_VILLAGE text,P_MOBILE  text,P_IMAGEPATH text); ";
 
-//    // method to insert a record in Table LOGIN
-//    public void addPatient(String fName, String mName, String lName, String village, String mobile, Blob image)
-//    {
-//
-//
-//        ContentValues newValues = new ContentValues();
-//        // Assign values for each column.
-//        newValues.put("USERNAME", userName);
-//        newValues.put("PASSWORD",password);
-//
-//
-//
-//        // Insert the row into your table
-//        db.insert("LOGIN", null, newValues);
-//        Toast.makeText(context, "User Info Saved", Toast.LENGTH_LONG).show();
-//
-//
-//    }
+    // method to insert a record in Table LOGIN
+    public void addPatient(String fName, String mName, String lName, String village, String mobile, String image)
+    {
+
+
+        ContentValues newValues = new ContentValues();
+        // Assign values for each column.
+        newValues.put("P_FNAME", fName);
+        newValues.put("P_MNAME",mName);
+        newValues.put("P_LNAME",lName);
+        newValues.put("P_VILLAGE",village);
+        newValues.put("P_MOBILE",mobile);
+        newValues.put("P_IMAGEPATH",image);
+
+
+
+        // Insert the row into your table
+        db.insert("PATIENT", null, newValues);
+        Toast.makeText(context, "Patient Info Saved", Toast.LENGTH_LONG).show();
+
+
+    }
+
+
+    //Method to get All patients
+    public ArrayList<String> getAllPatients()
+    {
+        ArrayList<String> array_list = new ArrayList<String>();
+        ArrayList<String> array_fname = new ArrayList<String>();
+        ArrayList<String> array_imagepath = new ArrayList<String>();
+        ArrayList<String> array_village = new ArrayList<String>();
+
+
+        //hp = new HashMap();
+        db = dbHelper.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from PATIENT", null );
+        res.moveToFirst();
+
+        while(res.isAfterLast() == false){
+
+            array_fname.add(res.getString(res.getColumnIndex("P_FNAME")));
+            array_imagepath.add(res.getString(res.getColumnIndex("P_IMAGEPATH")));
+            array_village.add(res.getString(res.getColumnIndex("P_VILLAGE")));
+            res.moveToNext();
+        }
+        array_list.addAll(array_fname);
+        array_list.addAll(array_imagepath);
+        array_list.addAll(array_village);
+        return array_list;
+    }
 }
