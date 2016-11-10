@@ -21,6 +21,20 @@ public class LoginDataBaseAdapter
     static final int DATABASE_VERSION = 1;
 
     public static final int NAME_COLUMN = 1;
+
+
+    //collumn names of Patient
+
+    public  static final String P_FNAME="P_FNAME";
+    public  static final String P_MNAME="P_MNAME";
+    public  static final String P_LNAME="P_LNAME";
+    public  static final String P_VILLAGE="P_VILLAGE";
+    public  static final String P_MOBILE="P_MOBILE";
+    public  static final String P_IMAGEPATH="P_IMAGEPATH";
+
+
+
+
     // TODO: Create public field for each column in your table.
     // SQL Statement to create a new database Tables.
     //LOGIN table Create Statement
@@ -166,29 +180,33 @@ public class LoginDataBaseAdapter
 
 
     //Method to get All patients
-    public ArrayList<String> getAllPatients()
+    public Cursor getAllPatients()
     {
-        ArrayList<String> array_list = new ArrayList<String>();
-        ArrayList<String> array_fname = new ArrayList<String>();
-        ArrayList<String> array_imagepath = new ArrayList<String>();
-        ArrayList<String> array_village = new ArrayList<String>();
+      // ArrayList<String> array_village = new ArrayList<String>();
 
 
         //hp = new HashMap();
         db = dbHelper.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from PATIENT", null );
-        res.moveToFirst();
 
-        while(res.isAfterLast() == false){
 
-            array_fname.add(res.getString(res.getColumnIndex("P_FNAME")));
-            array_imagepath.add(res.getString(res.getColumnIndex("P_IMAGEPATH")));
-            array_village.add(res.getString(res.getColumnIndex("P_VILLAGE")));
-            res.moveToNext();
-        }
-        array_list.addAll(array_fname);
-        array_list.addAll(array_imagepath);
-        array_list.addAll(array_village);
-        return array_list;
+//        Cursor res =  db.rawQuery( "select * from PATIENT", null );
+//        res.moveToFirst();
+
+      String projection[]={"P_FNAME","P_VILLAGE"};
+
+        Cursor res=db.query("PATIENT",projection,null,null,null,null,null);
+        return res;
     }
+
+    //Method to delete All patients
+    public int deleteAllPatients()
+    {
+
+
+        int numberOFEntriesDeleted= db.delete("PATIENT", null, null) ;
+        Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
+        return numberOFEntriesDeleted;
+
+    }
+
 }

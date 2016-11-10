@@ -6,4 +6,7 @@
     <string name="fa_icon_areachart">&#xf1fe;</string>
     <string name="fa_icon_piechart">&#xf200;</string>
     <string name="fa_icon_linechart">&#xf201;</string>
+    <string name="getall_users">GetAll Users</string>
+    <string name="sign_in">Sign IN</string>
+    <string name="sign_up">Sign UP</string>
 </resources>

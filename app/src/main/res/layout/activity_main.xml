@@ -4,15 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back2"
-    android:orientation="vertical"
-    android:gravity="center_vertical" >
+    android:gravity="center_vertical"
+    android:orientation="vertical">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:id="@+id/imageView"
-        android:src="@drawable/myclinic"/>
+        android:src="@drawable/myclinic"
+        tools:ignore="ContentDescription" />
 
     <Button
         android:id="@+id/buttonSignINn"
@@ -27,7 +28,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         style="@style/buttonStyle"
-        android:text="Sign IN"
+        android:text="@string/sign_in"
         android:onClick="signIn"/>
 
     <Button
@@ -35,13 +36,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         style="@style/buttonStyle"
-        android:text="Sign UP" />
+        android:text="@string/sign_up" />
     <Button
         android:id="@+id/buttonGetAllUser"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         style="@style/buttonStyle"
-        android:text="GetAll Users" />
+        android:text="@string/getall_users" />
 
 
 </LinearLayout>

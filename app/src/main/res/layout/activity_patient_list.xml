@@ -7,4 +7,8 @@
     android:background="@drawable/back2"
     tools:context="com.example.vijayc.patientmanagementsystem.PatientList">
 
+    <ListView
+        android:id="@+id/listt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

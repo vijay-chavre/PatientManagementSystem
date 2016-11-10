@@ -2,25 +2,76 @@ package com.example.vijayc.patientmanagementsystem;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.vijayc.patientmanagementsystem.data.LoginDataBaseAdapter;
+import com.example.vijayc.patientmanagementsystem.data.PatientListDataAdapter;
+import com.example.vijayc.patientmanagementsystem.models.PatientProvider;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class PatientList extends Activity {
+    private static final int SELECT_PHOTO = 1;
     LoginDataBaseAdapter loginDataBaseAdapter;
+    Cursor cursor;
+    ImageView image;
+    String filemanagerstring;
+    ListView listView;
+    PatientListDataAdapter patientListDataAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_list);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        listView = (ListView) findViewById(R.id.listt);
+        patientListDataAdapter =new PatientListDataAdapter(getApplicationContext(),R.layout.list_example_entry);
+
+        listView.setAdapter(patientListDataAdapter);
+
+        //get the cursor
+        loginDataBaseAdapter = new LoginDataBaseAdapter(this);
+        cursor = loginDataBaseAdapter.getAllPatients();
+        if(cursor==null){
+            System.out.println("cursor is null");
+        }
+        if(cursor.moveToFirst()) {
+            do{
+                String fname,village;
+                fname=cursor.getString(cursor.getColumnIndex("P_FNAME"));
+                village=cursor.getString(cursor.getColumnIndex("P_VILLAGE"));
+                PatientProvider  patientProvider= new PatientProvider(fname,village);
+                patientListDataAdapter.add(patientProvider);
+
+            }while (cursor.moveToNext());
+        }
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               // Toast.makeText(getBaseContext(),parent.getItemAtPosition(position),Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "item selected is"+ parent.getItemAtPosition(position),Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,7 +97,7 @@ public class PatientList extends Activity {
                 final EditText lname = (EditText) dialog.findViewById(R.id.lname);
                 final EditText village= (EditText) dialog.findViewById(R.id.village);
                 final EditText mobile= (EditText) dialog.findViewById(R.id.mobile);
-
+                final Button addPatient = (Button) dialog.findViewById(R.id.addPatient);
                 //Method to get image from image gallary
 
                 image.setOnClickListener(new View.OnClickListener() {
@@ -61,32 +112,38 @@ public class PatientList extends Activity {
                 });
 
 
-                final Button addPatient = (Button) dialog.findViewById(R.id.addPatient);
+
                 // create the instance of Databse
                 loginDataBaseAdapter = new LoginDataBaseAdapter(this);
                 loginDataBaseAdapter = loginDataBaseAdapter.open();
 
-                // Set On ClickListener
+                // Set On ClickListener on AddPatient BUtton on dialog box
                 addPatient.setOnClickListener(new View.OnClickListener() {
-
                     public void onClick(View v) {
                         // TODO Auto-generated method stub
 
-                        // get The User name and Password
+                        // get The User name and Password from Dialogue Layout file
                         String Fname= fname.getText().toString();
                         String Mname= mname.getText().toString();
                         String Lname= lname.getText().toString();
                         String Village= village.getText().toString();
                         String Mobile= mobile.getText().toString();
+
+
+                        //code to insert Patient in database
                         loginDataBaseAdapter.addPatient(Fname,Mname,Lname,Village,Mobile,filemanagerstring);
+                        dialog.dismiss();
+
+                        Intent intentSignUP = new Intent(getApplicationContext(), PatientList.class);
+                        startActivity(intentSignUP);
 
                         //PRINT ALL PATIENTS
-                        array_list = loginDataBaseAdapter.getAllPatients();
 
-                        Iterator itr=array_list.iterator();//getting Iterator from arraylist to traverse elements
-                        while(itr.hasNext()){
-                            System.out.println(itr.next());
-                        }
+//
+//                        Iterator itr=array_list.iterator();//getting Iterator from arraylist to traverse elements
+//                        while(itr.hasNext()){
+//                            System.out.println(itr.next());
+//                        }
 
 
                     }
@@ -98,6 +155,7 @@ public class PatientList extends Activity {
 
                 Toast.makeText(getApplicationContext(),"added record",Toast.LENGTH_LONG).show();
                 return true;
+
 
             default:
                 return super.onOptionsItemSelected(item);

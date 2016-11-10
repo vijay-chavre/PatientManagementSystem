@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="30dp"
+    android:background="@drawable/patientlist_background">
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/myclinic"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        style="@style/myImageView"
+        android:id="@+id/image" />
+
+    <TextView
+        android:id="@+id/name_entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="38sp"
+        android:text="Fname"
+        android:textColor="#FFFF"
+        android:layout_alignTop="@+id/image"
+        android:layout_toEndOf="@+id/image"
+        android:layout_marginStart="20dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/village_entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="Village"
+        android:textColor="#FFFF"
+        android:layout_alignStart="@+id/name_entry"
+        android:textStyle="italic"
+        android:layout_below="@+id/name_entry" />
+</RelativeLayout>
