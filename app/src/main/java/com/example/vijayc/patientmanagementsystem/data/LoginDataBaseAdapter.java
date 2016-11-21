@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
 import java.sql.Blob;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by vijayc on 23/10/16.
@@ -20,17 +22,25 @@ public class LoginDataBaseAdapter
 
     static final int DATABASE_VERSION = 1;
 
-    public static final int NAME_COLUMN = 1;
-
-
     //collumn names of Patient
-
+    public  static final String P_ID="P_ID";
     public  static final String P_FNAME="P_FNAME";
     public  static final String P_MNAME="P_MNAME";
     public  static final String P_LNAME="P_LNAME";
     public  static final String P_VILLAGE="P_VILLAGE";
     public  static final String P_MOBILE="P_MOBILE";
     public  static final String P_IMAGEPATH="P_IMAGEPATH";
+
+    // collumn names of VISITS Table
+
+    public   static final String VP_ID="V_ID";
+    public   static final String NAME="NAME";
+    public   static final String DISCRIPTION="DESCRIPTION";
+    public   static final String AMOUNT="TOTAL_AMOUNT";
+    public   static final String AMOUNT_PAID="AMOUNT_PAID";
+    public   static final String DATE="DATE";
+
+
 
 
 
@@ -72,7 +82,11 @@ public class LoginDataBaseAdapter
         return db;
     }
 
-    // method to insert a record in Table LOGIN
+  //.............End of General methods.........................................................
+
+
+
+    // method to insert a record in Table LOGIN........................................
     public void insertEntry(String userName,String password)
     {
 
@@ -153,10 +167,10 @@ public class LoginDataBaseAdapter
 
     //PATIENT table Create Statement
     static final String PATIENT_TABLE = "create table "+"PATIENT"+
-            "( " +"P_ID"+" integer primary key autoincrement,"+ "P_FNAME  text,P_MNAME  text,P_LNAME  text,P_VILLAGE text,P_MOBILE  text,P_IMAGEPATH text); ";
+            "( " +"P_ID"+" integer primary key autoincrement,"+ "P_FNAME  text,P_MNAME  text,P_LNAME  text,P_VILLAGE text,P_MOBILE  text,P_IMAGEPATH BLOB); ";
 
-    // method to insert a record in Table LOGIN
-    public void addPatient(String fName, String mName, String lName, String village, String mobile, String image)
+    // method to insert a record in Table PATIENT
+    public void addPatient(String fName, String mName, String lName, String village, String mobile, byte[] image)
     {
 
 
@@ -182,21 +196,44 @@ public class LoginDataBaseAdapter
     //Method to get All patients
     public Cursor getAllPatients()
     {
-      // ArrayList<String> array_village = new ArrayList<String>();
 
-
-        //hp = new HashMap();
         db = dbHelper.getReadableDatabase();
-
-
-//        Cursor res =  db.rawQuery( "select * from PATIENT", null );
-//        res.moveToFirst();
-
-      String projection[]={"P_FNAME","P_VILLAGE"};
+      String projection[]={"P_ID","P_FNAME","P_MNAME","P_LNAME","P_VILLAGE","P_IMAGEPATH","P_MOBILE"};
 
         Cursor res=db.query("PATIENT",projection,null,null,null,null,null);
         return res;
     }
+
+    //Seradhing patients List Method
+    public Cursor getAllPatients(String newText) {
+
+        db = dbHelper.getReadableDatabase();
+        String projection[]={"P_ID","P_FNAME","P_MNAME","P_LNAME","P_VILLAGE","P_IMAGEPATH","P_MOBILE"};
+//        Cursor res=db.query("PATIENT",projection,null,null,null,null,null);
+
+        String[]a=new String[1];
+        a[0]= newText+"%";
+        Cursor res=db.rawQuery("SELECT * FROM PATIENT WHERE P_FNAME LIKE ?", a);
+        return res;
+
+
+    }
+
+
+    // method to get the password  of userName from LOGIN Table
+    public Cursor getSinglePatient(String P_ID)
+    {
+
+        db = dbHelper.getReadableDatabase();
+        Cursor cursor=db.query("PATIENT", null, " P_ID=?", new String[]{P_ID}, null, null, null);
+        if(cursor.getCount()<1){
+            System.out.print("Not Exist");
+        }
+        return cursor;
+
+
+    }
+
 
     //Method to delete All patients
     public int deleteAllPatients()
@@ -208,5 +245,61 @@ public class LoginDataBaseAdapter
         return numberOFEntriesDeleted;
 
     }
+
+
+    /* .........................Methods for VISITS Table.............................................. */
+    static final String VISITS_TABLEE = "create table "+"VISITS"+
+            "( " +"V_ID"+" integer primary key autoincrement,"+ "VP_ID  integer not null,NAME  text,DISCRIPTION  text,TOTAL_AMOUNT integer,AMOUNT_PAID  integer,DATE text); ";
+
+
+
+    // method to insert a record in Table VISITS
+    public void addVisits(String discription,String pname,int vp_id, int amount, int amount_paid)
+    {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(new Date());
+        ContentValues newValues = new ContentValues();
+        // Assign values for each column.
+        newValues.put("VP_ID", vp_id);
+        newValues.put("NAME",pname);
+        newValues.put("DISCRIPTION",discription);
+        newValues.put("TOTAL_AMOUNT",amount);
+        newValues.put("AMOUNT_PAID",amount_paid);
+        newValues.put("DATE",date);
+
+
+
+
+        // Insert the row into your table
+        db.insert("VISITS", null, newValues);
+        Toast.makeText(context, " Info Saved", Toast.LENGTH_LONG).show();
+
+
+    }
+
+    //Method to get All Visits
+    public Cursor getAllVisits()
+    {
+
+        db = dbHelper.getReadableDatabase();
+        String projection[]={"V_ID","VP_ID","NAME","DISCRIPTION","TOTAL_AMOUNT","AMOUNT_PAID","DATE"};
+
+        Cursor res=db.query("VISITS",projection,null,null,null,null,null);
+        return res;
+    }
+
+    // Method to get all vists of selected PID
+    public  Cursor getAllVisits(String vp_id){
+        System.out.println(vp_id);
+        db = dbHelper.getReadableDatabase();
+        Cursor cursor=db.query("VISITS", null, " VP_ID=?", new String[]{vp_id}, null, null, null);
+        if(cursor.getCount()<1){
+            System.out.print("Not Exist");
+        }
+        return cursor;
+    }
+
+
 
 }

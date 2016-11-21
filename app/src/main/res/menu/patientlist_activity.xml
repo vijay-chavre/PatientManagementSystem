@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/addpatient"
-        android:icon="@drawable/plus2"
+        android:icon="@drawable/ic_person_add_black_24dp"
         android:title="@string/AddPatient"
         android:showAsAction="ifRoom"/>
+    <item android:id="@+id/search"
+        android:title="Search"
+        android:icon="@drawable/ic_zoom_in_black_24dp"
+        android:showAsAction="ifRoom"
+        android:actionViewClass="android.widget.SearchView"/>
+    <item android:id="@+id/refresh"
+        android:title="Refresh"
+        android:icon="@drawable/ic_refresh_black_24dp"
+        android:showAsAction="ifRoom"/>
+    <item android:id="@+id/deleteAll"
+        android:title="Delet All"
+        android:showAsAction="never"
+        android:actionViewClass="android.widget.SearchView"/>
 </menu>

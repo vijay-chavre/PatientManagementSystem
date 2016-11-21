@@ -1,12 +1,21 @@
 <resources>
     <string name="app_name">myClinic</string>
     <string name="title_activity_patient_list">PatientList</string>
+    <string name="title_activity_patient_details">PatientDetails</string>
     <string name="AddPatient">AddPatient</string>
-
     <string name="fa_icon_areachart">&#xf1fe;</string>
     <string name="fa_icon_piechart">&#xf200;</string>
     <string name="fa_icon_linechart">&#xf201;</string>
     <string name="getall_users">GetAll Users</string>
     <string name="sign_in">Sign IN</string>
     <string name="sign_up">Sign UP</string>
+    <string name="fname">Fname</string>
+    <string name="village">Village</string>
+    <string name="discription">Discription</string>
+    <string name="amount_paid">Amount Paid</string>
+    <string name="save">Save</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="search_hint">Enter First Name</string>
+    <string name="search_result">search result</string>
+
 </resources>

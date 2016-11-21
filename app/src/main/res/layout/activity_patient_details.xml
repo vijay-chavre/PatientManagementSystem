@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/myclinic"
+        android:id="@+id/photo"
+        android:paddingTop="20dp"
+        android:scaleType="centerCrop"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintTop_creator="1" />
+
+    <TextView
+        android:text="Name "
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/Name"
+        android:textStyle="normal|bold"
+        android:textAllCaps="true"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        app:layout_constraintRight_toLeftOf="@+id/guideline5"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        android:layout_marginTop="16dp"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
+
+    <TextView
+        android:text="Fname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tfname"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textAlignment="textStart"
+        app:layout_constraintBaseline_toBaselineOf="@+id/Name"
+        app:layout_constraintRight_toRightOf="@+id/tlname"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline5" />
+
+    <TextView
+        android:text="Mname "
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tmname"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tfname"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline6"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
+
+    <TextView
+        android:text="Lname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tlname"
+        android:textSize="18sp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/tfname"
+        app:layout_constraintRight_toLeftOf="@+id/guideline6"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline5"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
+
+    <TextView
+        android:text="Village "
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/Village"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:textAllCaps="true"
+        android:textAlignment="viewStart"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintRight_toLeftOf="@+id/guideline5"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline3"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/Mobile" />
+
+    <TextView
+        android:text="Village"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvillage"
+        android:textSize="18sp"
+        app:layout_constraintRight_toLeftOf="@+id/guideline6"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline5"
+        app:layout_constraintBaseline_toBaselineOf="@+id/Village"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
+
+    <TextView
+        android:text="Mobile "
+        android:layout_height="wrap_content"
+        android:id="@+id/Mobile"
+        android:textSize="18sp"
+        android:layout_width="0dp"
+        android:textStyle="normal|bold"
+        android:textAllCaps="true"
+        android:textAlignment="textStart"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintRight_toLeftOf="@+id/guideline5"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline3"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tlname"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
+
+    <TextView
+        android:text="Mobile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tmobile"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline5"
+        app:layout_constraintBaseline_toBaselineOf="@+id/Mobile"
+        app:layout_constraintRight_toLeftOf="@+id/guideline6"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="All Visits"
+        android:id="@+id/allvisits"
+        app:layout_constraintVertical_weight="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Add Visits"
+        android:id="@+id/addvisits"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintRight_toLeftOf="@+id/guideline"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintBaseline_toBaselineOf="@+id/allvisits"
+        tools:layout_constraintBaseline_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/calculatebill"
+        android:text="Calculate Bill"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addvisits"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="162dp"
+        app:layout_constraintGuide_percent="0.50625" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline2"
+        app:layout_constraintGuide_begin="326dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="326dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline3"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.01875"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="6dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline4"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="203dp"
+        tools:layout_editor_absoluteX="0dp"
+        app:layout_constraintGuide_percent="0.44026187" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="461dp"
+        android:id="@+id/guideline5"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="90dp"
+        app:layout_constraintGuide_percent="0.28223845" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline6"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="194dp"
+        app:layout_constraintGuide_percent="0.60583943" />
+
+
+</android.support.constraint.ConstraintLayout>

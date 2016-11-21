@@ -13,55 +13,48 @@
         android:id="@+id/imageView"
         android:src="@drawable/myclinic"
         tools:ignore="ContentDescription"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintRight_toLeftOf="@+id/buttonSignUP"
         android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSignIN"
-        android:layout_marginBottom="32dp" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/buttonSignIN"
-        android:layout_width="0dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
 
         android:text="@string/sign_in"
         android:onClick="signIn"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSignUP"
-        android:layout_marginBottom="4dp"
+        android:elevation="24dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:elevation="24dp" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonSignUP"
-        android:layout_width="0dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
-        app:layout_constraintBottom_toTopOf="@+id/buttonGetAllUser"
-        android:layout_marginBottom="4dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignIN" />
 
     <Button
         android:id="@+id/buttonGetAllUser"
-        android:layout_width="0dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="@string/getall_users"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="4dp" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignUP" />
 
 
 </android.support.constraint.ConstraintLayout>

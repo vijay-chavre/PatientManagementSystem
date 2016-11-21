@@ -3,37 +3,40 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="30dp"
-    android:background="@drawable/patientlist_background">
+    android:padding="2dp">
     <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+
         android:src="@drawable/myclinic"
-        android:layout_gravity="center"
+        android:background="@drawable/image_border"
         android:layout_centerVertical="true"
-        style="@style/myImageView"
-        android:id="@+id/image" />
+        android:id="@+id/listimage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="desc"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
 
     <TextView
         android:id="@+id/name_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="38sp"
-        android:text="Fname"
-        android:textColor="#FFFF"
-        android:layout_alignTop="@+id/image"
-        android:layout_toEndOf="@+id/image"
-        android:layout_marginStart="20dp"
-        android:textStyle="bold"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/listimage"
+        android:paddingBottom="10dp"
+        android:text="head"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@android:color/holo_blue_dark"/>
 
     <TextView
         android:id="@+id/village_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:text="Village"
-        android:textColor="#FFFF"
-        android:layout_alignStart="@+id/name_entry"
-        android:textStyle="italic"
-        android:layout_below="@+id/name_entry" />
+        android:layout_alignLeft="@+id/name_entry"
+        android:layout_below="@+id/name_entry"
+        android:text="@string/village"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="normal|italic"
+        android:textSize="16sp"/>
 </RelativeLayout>

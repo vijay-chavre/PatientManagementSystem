@@ -27,6 +27,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         _db.execSQL(LoginDataBaseAdapter.DATABASE_CREATE);
         _db.execSQL(LoginDataBaseAdapter.PATIENT_TABLE);
+        _db.execSQL(LoginDataBaseAdapter.VISITS_TABLEE);
+
 
     }
     // Called when there is a database version mismatch meaning that the version
@@ -44,6 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         // The simplest case is to drop the old table and create a new one.
         _db.execSQL("DROP TABLE IF EXISTS " + "LOGIN");
         _db.execSQL("DROP TABLE IF EXISTS " + "PATIENT");
+        _db.execSQL("DROP TABLE IF EXISTS " + "VISITS");
         // Create a new one.
         onCreate(_db);
     }

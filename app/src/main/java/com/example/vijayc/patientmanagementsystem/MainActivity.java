@@ -53,10 +53,8 @@ public class MainActivity extends Activity {
         btnUsers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList array_list = loginDataBaseAdapter.getAllUsers();
-                System .out.println(array_list);
-//                Toast userTost = Toast.makeText(MainActivity.this,,Toast.LENGTH_LONG);
-//                userTost.show();
+                Intent intentSignUP = new Intent(getApplicationContext(), PatientList.class);
+                startActivity(intentSignUP);
             }
         });
 
